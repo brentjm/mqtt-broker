@@ -1,0 +1,23 @@
+version: "3.3"
+
+services:
+  mqtt:
+      build: 
+        context: .
+        dockerfile: Dockerfile
+      image: eclipse-mosquitto
+      container_name: "mosquitto"
+      ports:
+        - "1883:1883"
+        - "9001:9001"
+      volumes:
+        - type: volume
+          source: log
+          target: /mosquitto/log
+        - type: volume
+          source: data
+          target: /mosquitto/data
+
+volumes:
+  log:
+  data:
